@@ -1,259 +1,473 @@
+/* Variáveis de cores para o Tema Claro (padrão) */
 :root {
-  --bg: #f1f5f9;
-  --panel: #ffffff;
-  --panel-2: #f8fafc;
-  --ink: #0f172a;
-  --muted: #64748b;
-  --line: #e2e8f0;
-  --brand: #2563eb;
-  --brand-ink: #ffffff;
-  --accent: #f59e0b;
-  --correct: #16a34a;
-  --shadow: 0 10px 30px rgb(15 23 42 / 0.08);
+  --fundo-pagina: #e8f5e9;
+  --fundo-cartao: #ffffff;
+  --texto-principal: #1b2e1e;
+  --texto-suave: #4a634e;
+  --borda-suave: #c8e6c9;
+  --cor-primaria: #1b8a3d;
+  --cor-primaria-hover: #146c2e;
+  --cor-destaque: #f59e0b;
+  --gramado-claro: #4caf50;
+  --gramado-escuro: #43a047;
+  --fundo-opcao: #f4fbf5;
+  --fundo-opcao-hover: #dcfce7;
+  --acerto-fundo: #dcfce7;
+  --acerto-borda: #16a34a;
+  --erro-fundo: #fee2e2;
+  --erro-borda: #dc2626;
+  --sombra: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
+/* Variáveis de cores para o Tema Escuro */
 [data-theme="dark"] {
-  --bg: #0b1120;
-  --panel: #111827;
-  --panel-2: #0f172a;
-  --ink: #f8fafc;
-  --muted: #94a3b8;
-  --line: #1f2937;
-  --brand: #3b82f6;
-  --brand-ink: #ffffff;
-  --accent: #fbbf24;
-  --correct: #22c55e;
-  --shadow: 0 10px 30px rgb(0 0 0 / 0.35);
+  --fundo-pagina: #0f1c14;
+  --fundo-cartao: #18291f;
+  --texto-principal: #f0fdf4;
+  --texto-suave: #a7c4b0;
+  --borda-suave: #2d4a38;
+  --cor-primaria: #22c55e;
+  --cor-primaria-hover: #16a34a;
+  --cor-destaque: #fbbf24;
+  --gramado-claro: #236b32;
+  --gramado-escuro: #1d5929;
+  --fundo-opcao: #203629;
+  --fundo-opcao-hover: #294735;
+  --acerto-fundo: #143d24;
+  --acerto-borda: #22c55e;
+  --erro-fundo: #451a1a;
+  --erro-borda: #ef4444;
+  --sombra: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 * {
   box-sizing: border-box;
-}
-
-html,
-body {
   margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial,
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
-
-.app {
-  width: min(760px, 100%);
-  margin: 0 auto;
-  padding: clamp(14px, 3vw, 26px);
-}
-
-.top {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: var(--fundo-pagina);
+  color: var(--texto-principal);
+  line-height: 1.5;
+  padding: 16px;
+  min-height: 100vh;
   display: flex;
+  justify-content: center;
   align-items: flex-start;
+}
+
+.container {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Cabeçalho */
+.cabecalho {
+  background-color: var(--fundo-cartao);
+  border: 1px solid var(--borda-suave);
+  border-radius: 16px;
+  padding: 14px 18px;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
   gap: 12px;
-  margin-bottom: 14px;
+  box-shadow: var(--sombra);
 }
 
-.kicker {
-  display: inline-block;
-  font-size: 11px;
+.titulo-area h1 {
+  font-size: 1.25rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--brand);
 }
 
-h1 {
-  margin: 4px 0 0;
-  font-size: clamp(22px, 4.6vw, 30px);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+.subtitulo {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
 }
 
-.subtitle {
-  margin: 4px 0 0;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 600;
+.acoes-topo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.btn {
-  border: 1px solid var(--line);
-  background: var(--panel);
-  color: var(--ink);
-  border-radius: 10px;
-  padding: 9px 13px;
-  font-size: 13px;
+.badge-placar {
+  background-color: var(--fundo-opcao);
+  border: 1px solid var(--borda-suave);
+  padding: 8px 12px;
+  border-radius: 999px;
   font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* Botões com altura mínima de 44px para celular */
+button {
   font-family: inherit;
   cursor: pointer;
-}
-
-.btn:hover {
-  border-color: var(--brand);
-}
-
-.btn-primary {
-  background: var(--brand);
-  border-color: var(--brand);
-  color: var(--brand-ink);
-}
-
-.btn.full {
-  width: 100%;
-  margin-top: 16px;
-}
-
-.hud {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-
-.pill {
-  display: inline-flex;
-  gap: 4px;
-  align-items: center;
-  border-radius: 999px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  padding: 6px 11px;
-  font-size: 12px;
+  min-height: 44px;
+  min-width: 44px;
+  border-radius: 12px;
   font-weight: 700;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
+  transition: transform 0.15s ease, background-color 0.15s ease;
 }
 
-.pill strong {
-  color: var(--ink);
+button:active {
+  transform: scale(0.98);
 }
 
-.board {
-  position: relative;
-  height: min(58vh, 420px);
-  min-height: 300px;
-  overflow: hidden;
-  border: 1px solid var(--line);
+.botao-icone {
+  background-color: var(--fundo-opcao);
+  color: var(--texto-principal);
+  border: 1px solid var(--borda-suave);
+  padding: 8px 14px;
+  font-size: 0.9rem;
+}
+
+.botao-icone:hover {
+  background-color: var(--fundo-opcao-hover);
+}
+
+.botao-principal {
+  background-color: var(--cor-primaria);
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.05rem;
+  width: 100%;
+}
+
+.botao-principal:hover {
+  background-color: var(--cor-primaria-hover);
+}
+
+/* Cartões das telas */
+.cartao {
+  background-color: var(--fundo-cartao);
+  border: 1px solid var(--borda-suave);
   border-radius: 16px;
-  background: var(--panel);
-  box-shadow: var(--shadow);
+  padding: 20px;
+  box-shadow: var(--sombra);
 }
 
-.start-hint {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.target {
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  border: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle at 50% 50%, #ffffff 0 18%, var(--accent) 19% 40%, #ffffff 41% 52%, var(--brand) 53% 100%);
-  box-shadow: 0 6px 16px rgb(37 99 235 / 0.35);
-  cursor: pointer;
-  animation: pop 0.18s ease;
-}
-
-.target:active {
-  transform: scale(0.94);
-}
-
-@keyframes pop {
-  from {
-    transform: scale(0.6);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.bottom {
-  margin-top: 12px;
-  color: var(--muted);
-  font-size: 12px;
-  text-align: center;
-}
-
-code {
-  background: var(--panel-2);
-  border: 1px solid var(--line);
-  border-radius: 5px;
-  padding: 1px 5px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 11px;
-}
-
-.overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: grid;
-  place-items: center;
-  padding: 18px;
-  background: rgb(2 6 23 / 0.55);
-  backdrop-filter: blur(6px);
-}
-
-.overlay[hidden] {
+.tela[hidden] {
   display: none;
 }
 
-.modal {
-  width: min(360px, 100%);
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 26px;
+/* Tela inicial */
+.destaque-historia {
   text-align: center;
-  box-shadow: 0 30px 80px rgb(0 0 0 / 0.35);
+  margin-bottom: 20px;
 }
 
-.modal-icon {
-  font-size: 40px;
+.emoji-grande {
+  font-size: 3.2rem;
+  display: block;
+  margin-bottom: 8px;
 }
 
-.modal h2 {
-  margin: 8px 0 0;
-  font-size: 22px;
+.destaque-historia h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
 }
 
-.modal p {
-  margin: 8px 0 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.5;
+.destaque-historia p {
+  color: var(--texto-suave);
+  margin-bottom: 12px;
 }
 
-@media (min-width: 700px) {
-  html.is-fullscreen .app,
-  html.is-standalone .app {
-    width: min(1000px, 100%);
-  }
-
-  html.is-fullscreen .board,
-  html.is-standalone .board {
-    height: min(68vh, 560px);
-  }
+.regra-vitoria {
+  background-color: var(--fundo-opcao);
+  border: 1px dashed var(--cor-primaria);
+  color: var(--texto-principal) !important;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 0.95rem;
 }
 
+/* Barra de rodadas */
+.barra-rodadas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.bolinhas {
+  display: flex;
+  gap: 6px;
+}
+
+.bolinha {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--borda-suave);
+  border: 2px solid transparent;
+}
+
+.bolinha.atual {
+  border-color: var(--cor-destaque);
+  transform: scale(1.15);
+}
+
+.bolinha.gol {
+  background-color: #16a34a;
+}
+
+.bolinha.erro {
+  background-color: #dc2626;
+}
+
+/* Campo de Futebol Visual */
+.campo-visual {
+  position: relative;
+  height: 190px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid var(--borda-suave);
+  margin-bottom: 16px;
+  background-color: #1e293b;
+}
+
+.arquibancada {
+  height: 36px;
+  background: repeating-linear-gradient(
+    90deg,
+    #334155,
+    #334155 12px,
+    #475569 12px,
+    #475569 24px
+  );
+  border-bottom: 3px solid #94a3b8;
+}
+
+.gramado {
+  position: relative;
+  height: 154px;
+  background: repeating-linear-gradient(
+    0deg,
+    var(--gramado-claro),
+    var(--gramado-claro) 22px,
+    var(--gramado-escuro) 22px,
+    var(--gramado-escuro) 44px
+  );
+}
+
+.grande-area {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 78%;
+  height: 105px;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  border-top: none;
+}
+
+.pequena-area {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 46%;
+  height: 48px;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  border-top: none;
+}
+
+.marca-penalti {
+  position: absolute;
+  top: 86px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+/* Gol e Goleiro */
+.gol {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 170px;
+  height: 42px;
+  border: 4px solid #ffffff;
+  border-bottom: none;
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+.goleiro {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.7rem;
+  transition: left 0.45s ease, transform 0.45s ease;
+}
+
+/* Estados do goleiro */
+.goleiro.pula-esquerda {
+  left: 18%;
+  transform: translateX(-50%) rotate(-25deg);
+}
+
+.goleiro.pula-direita {
+  left: 82%;
+  transform: translateX(-50%) rotate(25deg);
+}
+
+/* Bola e seus movimentos */
+.bola {
+  position: absolute;
+  top: 76px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.6rem;
+  transition: top 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              left 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.55s ease;
+}
+
+.bola.gol-esquerda {
+  top: 14px;
+  left: 39%;
+  transform: translateX(-50%) scale(0.75) rotate(360deg);
+}
+
+.bola.gol-direita {
+  top: 14px;
+  left: 61%;
+  transform: translateX(-50%) scale(0.75) rotate(-360deg);
+}
+
+.bola.chute-fora {
+  top: -18px;
+  left: 82%;
+  transform: translateX(-50%) scale(0.65);
+}
+
+.bola.chute-defendido {
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+}
+
+/* Pergunta e Opções */
+.etiqueta {
+  display: inline-block;
+  background-color: var(--fundo-opcao);
+  color: var(--cor-primaria);
+  border: 1px solid var(--borda-suave);
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.pergunta {
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+}
+
+.opcoes-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.botao-opcao {
+  background-color: var(--fundo-opcao);
+  color: var(--texto-principal);
+  border: 2px solid var(--borda-suave);
+  text-align: left;
+  padding: 12px 14px;
+  font-size: 0.96rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.botao-opcao:hover:not(:disabled) {
+  background-color: var(--fundo-opcao-hover);
+  border-color: var(--cor-primaria);
+}
+
+.botao-opcao:disabled {
+  cursor: default;
+  opacity: 0.85;
+}
+
+.botao-opcao.correta {
+  background-color: var(--acerto-fundo);
+  border-color: var(--acerto-borda);
+}
+
+.botao-opcao.errada {
+  background-color: var(--erro-fundo);
+  border-color: var(--erro-borda);
+}
+
+/* Feedback educativo */
+.feedback {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid var(--borda-suave);
+}
+
+.feedback.acerto {
+  background-color: var(--acerto-fundo);
+  border-color: var(--acerto-borda);
+}
+
+.feedback.erro {
+  background-color: var(--erro-fundo);
+  border-color: var(--erro-borda);
+}
+
+.feedback strong {
+  display: block;
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+}
+
+.feedback p {
+  font-size: 0.94rem;
+  margin-bottom: 12px;
+}
+
+/* Tela Final */
+.resultado-box {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.placar-destaque {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--cor-primaria);
+  margin: 8px 0;
+}
+
+.mensagem-final {
+  color: var(--texto-suave);
+}
+
+/* Respeita preferência de menos movimento */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    transition-duration: 0.001ms !important;
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
   }
 }

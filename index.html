@@ -1,48 +1,102 @@
-<!doctype html>
-<html lang="pt-BR" data-theme="light">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light dark" />
-    <title>Modelo de Jogo — Jogos VR</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="app">
-      <header class="top">
-        <div>
-          <span class="kicker">Modelo</span>
-          <h1 id="title">Clique no Alvo</h1>
-          <p class="subtitle">Troque este jogo pelo seu. O contrato já está pronto.</p>
-        </div>
-        <button id="restart" class="btn" type="button">Reiniciar</button>
-      </header>
-
-      <main>
-        <div class="hud">
-          <span class="pill">Alvos: <strong id="score">0</strong>/<span id="total">10</span></span>
-          <span class="pill">Tempo: <strong id="timer">0,0s</strong></span>
-        </div>
-
-        <div id="board" class="board" aria-label="Área do jogo">
-          <p id="start-hint" class="start-hint">Clique no alvo para começar</p>
-        </div>
-      </main>
-
-      <footer class="bottom">
-        <p>Este é o arquivo <code>game.js</code>. Leia os comentários e adapte.</p>
-      </footer>
-    </div>
-
-    <div id="result" class="overlay" hidden>
-      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="result-title">
-        <div class="modal-icon" aria-hidden="true">🎯</div>
-        <h2 id="result-title">Muito bem!</h2>
-        <p id="result-text">Você concluiu o jogo.</p>
-        <button id="play-again" class="btn btn-primary full" type="button">Jogar de novo</button>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adolfo, o Reserva de Ouro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <!-- Cabeçalho com placar e controles -->
+    <header class="cabecalho">
+      <div class="titulo-area">
+        <h1>Adolfo, o Reserva de Ouro</h1>
+        <p class="subtitulo">Educação Física • Fundamentos do Chute</p>
       </div>
-    </div>
+      <div class="acoes-topo">
+        <span id="placar-texto" class="badge-placar" aria-live="polite">Gols: 0 / 7</span>
+        <button id="botao-tema" class="botao-icone" type="button" aria-label="Mudar tema claro ou escuro">
+          🌓 Tema
+        </button>
+      </div>
+    </header>
 
-    <script src="game.js"></script>
-  </body>
+    <!-- Tela inicial do jogo -->
+    <section id="tela-inicio" class="cartao tela ativa">
+      <div class="destaque-historia">
+        <span class="emoji-grande" aria-hidden="true">⚽</span>
+        <h2>É a sua vez de entrar em campo!</h2>
+        <p>
+          O técnico chamou o Adolfo do banco de reservas nos minutos finais! Você tem <strong>7 cobranças de pênalti</strong> para mostrar que domina a técnica do chute.
+        </p>
+        <p class="regra-vitoria">
+          Meta: faça <strong>4 ou mais gols</strong> (mais da metade) para vencer!
+        </p>
+      </div>
+      <button id="botao-comecar" class="botao-principal" type="button">
+        Entrar em Campo
+      </button>
+    </section>
+
+    <!-- Tela principal do jogo -->
+    <section id="tela-jogo" class="cartao tela" hidden>
+      <!-- Indicador visual das 7 cobranças -->
+      <div class="barra-rodadas" aria-label="Progresso das 7 cobranças">
+        <span id="texto-rodada">Cobrança 1 de 7</span>
+        <div id="bolinhas-placar" class="bolinhas"></div>
+      </div>
+
+      <!-- Campo de futebol e animação da bola -->
+      <div class="campo-visual" role="img" aria-label="Campo de futebol com gol, goleiro e bola na marca do pênalti">
+        <div class="arquibancada"></div>
+        <div class="gramado">
+          <div class="grande-area"></div>
+          <div class="pequena-area"></div>
+          <div class="marca-penalti"></div>
+
+          <!-- Traves e rede do gol -->
+          <div class="gol">
+            <div class="rede"></div>
+            <div id="goleiro" class="goleiro">🧤</div>
+          </div>
+
+          <!-- Bola que se move conforme o chute -->
+          <div id="bola" class="bola">⚽</div>
+        </div>
+      </div>
+
+      <!-- Pergunta técnica da cobrança -->
+      <div class="area-desafio">
+        <span id="etiqueta-dificuldade" class="etiqueta">Nível Fácil</span>
+        <h2 id="pergunta-texto" class="pergunta">Carregando situação do chute...</h2>
+        <div id="lista-opcoes" class="opcoes-grid"></div>
+      </div>
+
+      <!-- Explicação educativa após o chute -->
+      <div id="caixa-feedback" class="feedback" hidden aria-live="polite">
+        <strong id="feedback-titulo">Gol!</strong>
+        <p id="feedback-explicacao">Explicação do movimento.</p>
+        <button id="botao-proximo" class="botao-principal" type="button">
+          Próxima Cobrança
+        </button>
+      </div>
+    </section>
+
+    <!-- Tela final de resultado -->
+    <section id="tela-fim" class="cartao tela" hidden>
+      <div class="resultado-box">
+        <span id="emoji-final" class="emoji-grande" aria-hidden="true">🏆</span>
+        <h2 id="titulo-final">Fim da Disputa!</h2>
+        <p id="placar-final" class="placar-destaque">Você marcou 0 de 7 gols.</p>
+        <p id="mensagem-final" class="mensagem-final"></p>
+      </div>
+      <button id="botao-reiniciar" class="botao-principal" type="button">
+        Jogar Novamente
+      </button>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
 </html>
